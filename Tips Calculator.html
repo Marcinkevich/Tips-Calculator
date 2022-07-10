@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Kalculator</title>
+  <meta charset="UTF-8">
+  <style>
+    .body {
+      width: 500px;
+      height: 650px;
+      background: #360160;
+      margin: auto;
+      padding: auto;
+      border-radius: 15px;
+    }
+    .display-1 {
+      color: #ffea00;
+      font-size: 50px;
+      font: Condensed;
+      flex-direction: row;
+    }
+
+    .form-item {
+      color: #ffffff;
+      font-size: 15px;
+      font: Condensed;
+      margin: auto;
+      padding: auto;
+      
+    }
+    .amount{
+      width: 80%;
+      height: 50px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      border-radius: 5px;
+    }
+    .quality{
+      width: 80%;
+      height: 50px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      border-radius: 5px;
+
+    }
+    
+    .note {
+      color: rgb(102, 99, 99);
+    }
+    .actions {
+      display: flex;
+      flex-direction: row;
+      height: 130px;
+      width: 400px;
+    }
+    .button-main {
+      width: 180px;
+      height: 60px;
+      background: #FFDC40;
+      border-radius: 15px;
+      padding: auto;
+      margin: auto;
+    }
+    .button-cancel {
+      width: 180px;
+      height: 60px;
+      background: #7C7A7A;
+      border-radius: 15px;
+      margin: auto;
+      padding: auto;
+    }
+  </style>
+</head>
+
+  ...  <body>
+<div class="body">
+  <h1 class="display-1">Калькулятор Чаевых</h1>
+
+  <label class="form-item">
+    <div>Сумма по счету</div>
+    <input type="number" class="amount" id="service_quality" onkeypress="validate(event)">
+  </label>
+
+  <label class="form-item">
+    <div>Качество обслуживания</div>
+    <select class="quality" id="service_quality2">
+      <option  id="some">Плохое (0%)</option>
+      <option >Нормальное (5%)</option>
+      <option >Хорошее (10%)</option>
+      <option >Отличное (15%)</option>
+    </select>
+  </label>
+
+  <label class="form-item">
+    <div>Количество человек</div>
+    <input type="number" class="amount" id="service_quality3" onkeypress="validate(event)">
+  </label>
+
+  <div class="actions">
+    <button class="button-main">Посчитать</button>
+    <button class="button-cancel">Сбросить</button>
+  </div>
+
+  <div class="summary hide">
+    <div class="summary-item">
+      <div class="form-item">Чаевые: </div>
+      <div class="form-item" id="tips"></div>
+      <div class="note">(С человека) </div>
+      <div class="form-item">Итого: </div>
+      <div class="form-item" id="total"></div>
+      <div class="note">(С человека) </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  function onCountClick() {
+    if (document.querySelector('#service_quality2').value === 'Плохое (0%)') {
+      document.querySelector('#tips').textContent = '0';
+      document.querySelector('#total').textContent = Number(document.querySelector('#service_quality').value)/Number(document.querySelector('#service_quality3').value);
+      console.log('true')
+    }
+    if (document.querySelector('#service_quality2').value === 'Нормальное (5%)') {
+      document.querySelector('#tips').textContent = (Number(document.querySelector('#service_quality').value) * 0.05)/Number(document.querySelector('#service_quality3').value);
+      document.querySelector('#total').textContent = ((Number(document.querySelector('#service_quality').value)* 0.05) + Number(document.querySelector('#service_quality').value))/Number(document.querySelector('#service_quality3').value);
+    }
+    if (document.querySelector('#service_quality2').value === 'Хорошее (10%)') {
+      document.querySelector('#tips').textContent = (Number(document.querySelector('#service_quality').value) * 0.1)/Number(document.querySelector('#service_quality3').value);
+      document.querySelector('#total').textContent = ((Number(document.querySelector('#service_quality').value)* 0.1) + Number(document.querySelector('#service_quality').value))/Number(document.querySelector('#service_quality3').value);
+    }
+    if (document.querySelector('#service_quality2').value === 'Отличное (15%)') {
+      document.querySelector('#tips').textContent = (Number(document.querySelector('#service_quality').value) * 0.15)/Number(document.querySelector('#service_quality3').value);
+      document.querySelector('#total').textContent = ((Number(document.querySelector('#service_quality').value)* 0.15) + Number(document.querySelector('#service_quality').value))/Number(document.querySelector('#service_quality3').value);
+    }
+
+  }
+
+  function onClearClick() {
+    document.querySelector('#service_quality').value = undefined;
+    document.querySelector('#service_quality2').value = document.querySelector('#some');
+    document.querySelector('#service_quality3').value = undefined;
+    document.querySelector('#tips').textContent = undefined;
+    document.querySelector('#total').textContent = undefined;
+  }
+  
+  document.querySelector('.button-main').addEventListener('click', onCountClick);
+  document.querySelector('.button-cancel').addEventListener('click', onClearClick);
+
+  function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+</script>
+</body>
+</html>
