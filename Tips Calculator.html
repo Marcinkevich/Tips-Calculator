@@ -1,31 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalculator</title>
   <meta charset="UTF-8">
   <style>
-    .body {
-      width: 500px;
-      height: 650px;
-      background: #360160;
+    
+      @media only screen and (max-width:1920px){
+      /*For PC:*/
+      .body {
+        width: 500px;
+        height: 800px;
+        background: #360160;
+        text-align: center;
+        border: 2px solid #000000;
+        border-radius: 15px; 
+      }
+      .display-1 {
+          color: #ffea00;
+          font-family: 'Roboto Condensed';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 52px;
+          line-height: 90.3%;
+          flex-direction: row;
+        } 
+      .button-main {
+      width: 40%;
+      height: 60px;
+      background: #FFDC40;
+      border-radius: 15px;
+      padding: auto;
+      margin: auto;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
+      border: 2px solid #000000;
+    }
+    .button-cancel {
+      width: 40%;
+      height: 60px;
+      background: #7C7A7A;
+      border-radius: 15px;
       margin: auto;
       padding: auto;
+      font-size: 20px;
+      font-family: 'Roboto Condensed';
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+      }
+      @media only screen and (max-width:768px){
+      /*For desktop:*/
+      .body {
+        width: 500px;
+        height: 800px;
+        background: #360160;
+        text-align: center;
+        border: 2px solid #000000;
+        border-radius: 15px; 
+      }
+      .display-1 {
+          color: #ffea00;
+          font-size: 35px;
+          font-family: 'Roboto Condensed';
+          font-style: normal;
+          flex-direction: row;
+      }
+      .button-main {
+      width: 40%;
+      height: 60px;
+      background: #FFDC40;
       border-radius: 15px;
+      padding: auto;
+      margin: auto;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
+      border: 2px solid #000000;
     }
-    .display-1 {
-      color: #ffea00;
-      font-size: 50px;
-      font: Condensed;
-      flex-direction: row;
+    .button-cancel {
+      width: 40%;
+      height: 60px;
+      background: #7C7A7A;
+      border-radius: 15px;
+      margin: auto;
+      padding: auto;
+      font-size: 20px;
+      font-family: 'Roboto Condensed';
+      color: #ffffff;
+      border: 2px solid #ffffff;
     }
-
+      }
+      @media only screen and (max-width:320px){
+      /*For mobile phones:*/
+      .body {
+        width: 290px;
+        height: 620px;
+        background: #360160;
+        text-align: center;
+        border: 2px solid #000000;
+        border-radius: 15px; 
+      }
+      .display-1 {
+          color: #ffea00;
+          font-size : 25px;
+          font-family: 'Roboto Condensed';
+          font-style: normal;
+          flex-direction : row;
+      }
+      .button-main {
+      width: 40%;
+      height: 40px;
+      background: #FFDC40;
+      border-radius: 15px;
+      padding: auto;
+      margin: auto;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
+      border: 1px solid #000000;
+    }
+    .button-cancel {
+      width: 40%;
+      height: 40px;
+      background: #7C7A7A;
+      border-radius: 15px;
+      margin: auto;
+      padding: auto;
+      font-size: 20px;
+      font-family: 'Roboto Condensed';
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+      }
     .form-item {
       color: #ffffff;
-      font-size: 15px;
-      font: Condensed;
+      font-size: 20px;
+      font-family: 'Roboto Condensed';
+      font-style: normal;
       margin: auto;
-      padding: auto;
-      
+      padding: auto; 
     }
     .amount{
       width: 80%;
@@ -34,6 +146,8 @@
       background: #FFFFFF;
       border: 2px solid #000000;
       border-radius: 5px;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
     }
     .quality{
       width: 80%;
@@ -42,50 +156,42 @@
       background: #FFFFFF;
       border: 2px solid #000000;
       border-radius: 5px;
-
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
     }
     
     .note {
       color: rgb(102, 99, 99);
+      font-size: 20px;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
     }
     .actions {
       display: flex;
       flex-direction: row;
-      height: 130px;
-      width: 400px;
+      height: 40%;
+      width: 100%;
+      text-align: center;
+      font-family: 'Roboto Condensed';
+      font-size: 20px;
     }
-    .button-main {
-      width: 180px;
-      height: 60px;
-      background: #FFDC40;
-      border-radius: 15px;
-      padding: auto;
-      margin: auto;
-    }
-    .button-cancel {
-      width: 180px;
-      height: 60px;
-      background: #7C7A7A;
-      border-radius: 15px;
-      margin: auto;
-      padding: auto;
-    }
+    
+    
   </style>
 </head>
-
-  ...  <body>
+<body>
 <div class="body">
   <h1 class="display-1">Калькулятор Чаевых</h1>
 
   <label class="form-item">
-    <div>Сумма по счету</div>
+    <div>Сумма на счету</div>
     <input type="number" class="amount" id="service_quality" onkeypress="validate(event)">
   </label>
 
   <label class="form-item">
     <div>Качество обслуживания</div>
     <select class="quality" id="service_quality2">
-      <option  id="some">Плохое (0%)</option>
+      <option >Плохое (0%)</option>
       <option >Нормальное (5%)</option>
       <option >Хорошее (10%)</option>
       <option >Отличное (15%)</option>
@@ -102,7 +208,7 @@
     <button class="button-cancel">Сбросить</button>
   </div>
 
-  <div class="summary hide">
+  <div class="summary-hide">
     <div class="summary-item">
       <div class="form-item">Чаевые: </div>
       <div class="form-item" id="tips"></div>
@@ -149,15 +255,15 @@
   document.querySelector('.button-cancel').addEventListener('click', onClearClick);
 
   function validate(evt) {
-  var theEvent = evt || window.event;
-  var key = theEvent.keyCode || theEvent.which;
-  key = String.fromCharCode( key );
-  var regex = /[0-9]|\./;
-  if( !regex.test(key) ) {
-    theEvent.returnValue = false;
-    if(theEvent.preventDefault) theEvent.preventDefault();
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode( key );
+    var regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
   }
-}
 </script>
 </body>
 </html>
